@@ -1,8 +1,10 @@
-<header>
-    <ul>
-        <li *ngIf="loggedIn == undefined || loggedIn == false"><a href="">Login</a></li>
-        <li *ngIf="loggedIn == undefined || loggedIn == false"><a href="">Register</a></li>
-        <li *ngIf="isAdmin"><a href="">Users</a></li>
-        <li *ngIf="loggedIn"><a href="">Logout</a></li>
+<header class="td-Header">
+    <div class="td-Header_LogoWrapper"></div>
+
+    <ul class="td-Header_Navbar">
+        <li class="td-Header_NavItem" *ngIf="loggedIn == undefined || loggedIn == false"><a href="">Login</a></li>
+        <li class="td-Header_NavItem" *ngIf="loggedIn == undefined || loggedIn == false"><a href="">Register</a></li>
+        <li class="td-Header_NavItem" *ngIf="isAdmin"><a href="">Users</a></li>
+        <li class="td-Header_NavItem" *ngIf="loggedIn"><a href="">Logout</a></li>
     </ul>
 </header>
