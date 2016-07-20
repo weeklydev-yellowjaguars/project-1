@@ -1,0 +1,29 @@
+.td-NewItemForm
+    align-content: stretch
+    align-items: stretch
+
+.td-NewItemForm_Field
+    flex: 2
+    width: auto
+
+    &.td-NewItemForm_Field-iconSelect
+        flex: 1
+        min-width: 130px
+
+    &.td-NewItemForm_Field-submit
+        flex: none
+        width: 108px
+
+.td-NewItemForm_Field-errorMessage
+    display: block
+    color: red
+    font-size: 0.9em
+    margin-top: 10px
+    padding: 0 2px
+
+@media (min-width: 640px)
+    .td-NewItemForm
+        display: flex
+
+    &.td-NewItemForm_Field-iconSelect
+        max-width: 250px
