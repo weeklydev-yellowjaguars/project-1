@@ -1,5 +1,10 @@
 (function(app) {
 
+    function TodoItem(content, priority) {
+        this.content = content || '';
+        this.priority = priority || 'low';
+    }
+
     app.NewItemComponent =
     ng.core.Component({
         selector: 'app-new-item',
@@ -7,26 +12,26 @@
     })
     .Class({
         constructor: function() {
-            // we can now use `loggedIn` as a variable in our templates
-            this.loggedIn = false;
-
-            this.new_item = {
-                content: {error: false, value: ''},
-                priority: 'low'
-            };
+            this.model = new TodoItem();
+            this.submitted = false;
         },
         submitForm: function() {
-            if (this.new_item.content.value.length < 3) {
-                this.new_item.content.error = 'Please enter at least 3 characters';
+            this.submitted = true;
 
+            // not all fields are valid, so stop here
+            if (this.model.content.length < 3 || ['low', 'medium', 'high'].indexOf(this.model.priority) === -1) {
                 return false;
-            } else {
-                this.new_item.error = false;
             }
 
-            if (['low', 'medium', 'high'].indexOf(this.new_item.priority) < 0) {
-                this.new_item.priority = 0;
+            // add the item to the full list
+
+            if (this.loggedIn)  {
+                // send the item to the back-end to store in the database
             }
+
+            // reset the form fields and status
+            this.model = new TodoItem();
+            this.submitted = false;
 
             return false;
         }

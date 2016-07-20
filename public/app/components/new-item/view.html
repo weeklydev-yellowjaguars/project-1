@@ -1,13 +1,13 @@
 <form class="td-NewItemForm" (ngSubmit)="submitForm()">
     <fieldset class="td-NewItemForm_Field">
         <label for="item_content">New Todo Item</label>
-        <input id="item_content" name="item_content" type="text" minlength="3" required [ngModel]="new_item.content.value" />
-        <span class="td-NewItemForm_Field-errorMessage" *ngIf="new_item.content.error != false">{{new_item.content.error}}</span>
+        <input name="content" type="text" minlength="3" required [(ngModel)]="model.content" #newItemContent />
+        <span class="td-NewItemForm_Field-errorMessage" *ngIf="submitted && newItemContent.value.length < 3">3 characters are required</span>
     </fieldset>
 
     <fieldset class="td-NewItemForm_Field td-NewItemForm_Field-iconSelect">
         <label for="item_priority">Priority</label>
-        <select id="item_priority" name="item_priority" required [ngModel]="new_item.priority">
+        <select id="item_priority" name="item_priority" required [(ngModel)]="model.priority" #newItemPriority>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
