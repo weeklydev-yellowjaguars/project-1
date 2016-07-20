@@ -1,6 +1,13 @@
 # project-1
 Project 1 - To Do List
 
+## Setup
+
+1. Download `master` branch
+2. `cd` into project directory and run `npm install`
+3. For angular2, run `cd public/vendor` and run `npm install`
+4. From the project base directory, run `npm start` to start the Express server
+
 ## Team Members
 
 ## Task
