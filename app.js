@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var auth = require('./routes/auth');
 var todoItems = require('./routes/todoItems');
 var users = require('./routes/users');
 
@@ -33,6 +34,7 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/auth', auth);
 app.use('/todos', todoItems);
 app.use('/users', users);
 
