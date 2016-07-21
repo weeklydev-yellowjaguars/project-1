@@ -4,8 +4,8 @@
     ng.core.Injectable().Class({
         constructor: function() {
         },
-        getTodoItems: function(options) {
-            return [
+        getTodoItems: function(options, cb) {
+            var data = [
                 {content: 'Lorem ipsum dolor sit amet', priority: 'low', date_created: Date.now()},
                 {content: 'consectetur adipisicing elit', priority: 'low', date_created: Date.now()},
                 {content: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', priority: 'low', date_created: Date.now()},
@@ -17,6 +17,19 @@
                 {content: 'consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', priority: 'low', date_created: Date.now()},
                 {content: 'exercitation ullamco laboris nisi ut aliquip', priority: 'low', date_created: Date.now()},
             ];
+
+            // if no callback is given, just return the data
+            if (options === undefined && cb === undefined) {
+                return data;
+            }
+
+            // this lets us accept either options and a callback, or just a callback
+            if (cb === undefined) {
+                cb = options;
+                options = {};
+            }
+
+            cb(data);
         }
     });
 

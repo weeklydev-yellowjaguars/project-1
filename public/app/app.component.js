@@ -8,7 +8,9 @@
     })
     .Class({
         constructor: [app.TodoItemService, function(todoItemService) {
-            todoItemService.getTodoItems();
+            todoItemService.getTodoItems(function(data) {
+                console.log(data);
+            });
         }]
     });
 
