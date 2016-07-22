@@ -5,6 +5,7 @@ var express = require('express');
 var nodemailer = require('nodemailer');
 var router = express.Router();
 
+// load models
 var User = require('../models/User.js');
 
 router.post('/login', function(req, res, next) {
@@ -77,7 +78,7 @@ router.post('/reset', function(req, res, next) {
                     pass: '$.Reset123'
                 }
             }).sendMail({
-                from: 'Yellow Jaguars <weeklydev.yellowjaguars@gmail.com>',
+                from: 'Yellow Jaguars Todo <weeklydev.yellowjaguars@gmail.com>',
                 to: user.email,
                 subject: 'Password Reset',
                 text: 'Your new password at http://localhost:3000/login is ' + new_password,
