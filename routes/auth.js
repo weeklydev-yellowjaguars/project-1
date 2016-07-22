@@ -12,7 +12,7 @@ router.post('/login', function(req, res, next) {
 
     // make sure we receive a password and either a username or email for login
     if (!req.body || (!req.body.username && !req.body.email) || !req.body.password) {
-        return res.send(401, JSON.stringify({error: true, message: 'invalid login'}));
+        return res.status(401).send(JSON.stringify({error: true, message: 'invalid login'}));
     }
 
     // we can accept either a username or email for login
@@ -28,7 +28,7 @@ router.post('/login', function(req, res, next) {
 
         // no user was found with the login credentials
         if (!user) {
-            return res.send(401, JSON.stringify({error: true, message: 'invalid login'}));
+            return res.status(401).send(JSON.stringify({error: true, message: 'invalid login'}));
         }
 
         // proper credentials were given, so return the User object
