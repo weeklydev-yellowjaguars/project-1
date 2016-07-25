@@ -3,8 +3,8 @@
     app.AppComponent =
     ng.core.Component({
         selector: 'app-main',
-        template: '<app-new-item>New Item...</app-new-item><br /><br /><h1>Todo List</h1>',
-        providers: [app.TodoItemService]
+        template: '<app-header>Loading Header...</app-header><app-new-item></app-new-item>',
+        directives: [app.TodoItemService, app.HeaderComponent, app.NewItemComponent]
     })
     .Class({
         constructor: [app.TodoItemService, function(todoItemService) {
