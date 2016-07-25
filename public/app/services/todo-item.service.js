@@ -3,6 +3,21 @@
     app.TodoItemService =
     ng.core.Injectable().Class({
         constructor: function() {
+            var ajax = $.ajax({
+                url: '/todos/',
+                data: {},
+
+                // callbacks
+                success: function(data, status, xhr) {
+                    console.info(data);
+                },
+                error: function(xhr, type, error) {
+                    console.warn(error);
+                }
+            });
+        },
+        addTodoItem: function(item, cb) {
+            console.log(item);
         },
         getTodoItems: function(options, cb) {
             var data = [
