@@ -88,7 +88,7 @@ exports.create = function(req, res, next) {
 };
 
 exports.list = function(req, res, next) {
-	User.find({}, function(err, users) {
+	User.find({}).select({ password: 0 }).exec(function(err, users) {
 		if (err)
 			return next(err);
 		else
@@ -97,14 +97,13 @@ exports.list = function(req, res, next) {
 };
 
 exports.read = function(req, res) {
-	res.json(req.user);
+	var user = req.user;
+	delete user.password;	// don't return the password
+	res.json(user);
 };
 
 exports.userByID = function(req, res, next, id) {
-	User.findOne({
-		_id: id
-	},
-	function(err, user) {
+	User.findOne({ _id: id }, function(err, user) {
 		if (err) {
 			return next(err);
 		}
@@ -117,7 +116,7 @@ exports.userByID = function(req, res, next, id) {
 
 exports.update = function(req, res, next) {
 	var update = req.body;
-	delete update.password;	// do not update the password
+	delete update.password;		// don't update the password
 	User.findByIdAndUpdate(req.user.id, update, { new: true }, function(err, user) {
 		if (err)
 			return next(err);
