@@ -1,0 +1,20 @@
+<ul class="td-ItemsList">
+    <li class="td-ItemsList_EmptyMessage" *ngIf="!todoItems.length">No items. Add a new one from the form above!</li>
+
+    <li id="items-list-{{ item._id }}" class="td-ItemsList_Item"
+        *ngFor="let item of todoItems"
+        [class.is-green]="item.priority == 0"
+        [class.is-yellow]="item.priority == 1"
+        [class.is-red]="item.priority == 2"
+        #itemElem>
+        <div class="td-ItemsList_Actions">
+            <a href="javascript:void(0)" (click)="editItem(itemElem, item)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+            <a href="javascript:void(0)" (click)="removeItem(itemElem, item)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+        </div>
+        <div class="td-ItemsList_Content"
+            (keypress)="onContentKeypress($event, item, itemElem, elem)"
+            (input)="item.content = $event.target.textContent"
+            [textContent]="item.content"
+            #elem></div>
+    </li>
+</ul>

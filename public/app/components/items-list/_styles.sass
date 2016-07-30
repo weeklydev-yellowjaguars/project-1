@@ -1,0 +1,47 @@
+.td-ItemsList
+    margin-top: 35px
+
+.td-ItemsList_EmptyMessage
+    color: #aaaaaa
+    font-size: 1.25em
+    font-style: italic
+
+.td-ItemsList_Item
+    border: 1px solid rgba(25, 25, 25, 0.2)
+    left: 0
+    overflow: hidden
+    min-height: 50px
+    margin-bottom: 5px
+    position: relative
+    transition: all 150ms ease
+
+    &.is-hiding
+        left: calc(100% + 50px)
+
+    &:last-child
+        margin-bottom: 0
+
+.td-ItemsList_Actions
+    float: left
+    margin-left: -90px
+    margin-right: 15px
+    padding: 0 10px
+    transition: all 50ms ease
+
+    .is-active &,
+    &:hover
+        margin-left: 0
+
+    .is-green > &
+        background: #2ecc71
+
+    .is-yellow > &
+        background: #f1c40f
+
+    .is-red > &
+        background: #e74c3c
+
+.td-ItemsList_Actions > a
+    color: #ffffff
+    display: block
+    text-decoration: none
