@@ -2,32 +2,31 @@
 
     function TodoItem(content, priority) {
         this.content = content || '';
-        this.priority = priority || 'low';
+        this.priority = priority || 0;
     }
 
     app.NewItemComponent =
     ng.core.Component({
         selector: 'app-new-item',
-        templateUrl: 'app/components/new-item/view.html'
+        templateUrl: 'app/components/new-item/view.html',
+        providers: [app.TodoItemService]
     })
     .Class({
-        constructor: function() {
+        constructor: [app.TodoItemService, function(todoItemService) {
+            this.todoItemService = todoItemService;
+
             this.model = new TodoItem();
             this.submitted = false;
-        },
+        }],
         submitForm: function() {
             this.submitted = true;
 
             // not all fields are valid, so stop here
-            if (this.model.content.length < 3 || ['low', 'medium', 'high'].indexOf(this.model.priority) === -1) {
+            if (this.model.content.length < 3) {
                 return false;
             }
 
-            // add the item to the full list
-
-            if (this.loggedIn)  {
-                // send the item to the back-end to store in the database
-            }
+            this.todoItemService.addTodoItem(this.model);
 
             // reset the form fields and status
             this.model = new TodoItem();
