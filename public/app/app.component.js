@@ -3,8 +3,8 @@
     app.AppComponent =
     ng.core.Component({
         selector: 'app-main',
-        template: '<app-header>Loading Header...</app-header><app-new-item></app-new-item>',
-        directives: [app.HeaderComponent, app.NewItemComponent],
+        templateUrl: 'app/home.html',
+        directives: [app.HeaderComponent, app.NewItemComponent, app.ItemsListComponent],
         providers: [app.TodoItemService]
     })
     .Class({
