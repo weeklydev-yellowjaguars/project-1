@@ -2,18 +2,18 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var users = require('../controllers/users.controller.js');
+var auth = require('../controllers/auth.controller.js');
 
-router.get('/register', users.renderRegister);
-router.post('/register', users.register);
+router.get('/register', auth.renderRegister);
+router.post('/register', auth.register);
 
-router.get('/login', users.renderLogin);
+router.get('/login', auth.renderLogin);
 router.post('/login', passport.authenticate('local', {
 	successRedirect: '/',
 	failureRedirect: '/login',
 	failureFlash: true
 }));
 
-router.get('/logout', users.logout);
+router.get('/logout', auth.logout);
 
 module.exports = router;
