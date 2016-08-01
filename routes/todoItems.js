@@ -4,7 +4,7 @@ var router = express.Router();
 var todos = require('../controllers/todoitems.controller.js');
 var users = require('../controllers/users.controller.js');
 
-router.get('/', todos.list);
+router.get('/', users.requiresLogin, todos.list);
 router.post('/', users.requiresLogin, todos.create);
 
 router.param('todoId', todos.todoByID);
