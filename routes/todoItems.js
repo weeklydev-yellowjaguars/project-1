@@ -1,23 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-var TodoItem = require('../models/TodoItem.js');
+var todos = require('../controllers/todoitems.controller.js');
+var users = require('../controllers/users.controller.js');
 
-/* GET to retrieve all todo items */
-router.get('/', function(req, res, next) {
-    TodoItem.find({}, function(err, items) {
-        if (err) throw err;
+router.get('/', todos.list);
+router.post('/', users.requiresLogin, todos.create);
 
-        res.send(JSON.stringify(items));
-    });
-});
+router.param('todoId', todos.todoByID);
 
-/* POST to create new todo item */
-router.post('/', function(req, res, next) {
-    new TodoItem({content: req.body.content}).save();
-
-    // 201 - Created
-    res.sendStatus(201);
-});
+router.get('/:todoId', todos.read);
+router.put('/:todoId', users.requiresLogin, todos.hasAuthorization, todos.update);
+router.delete('/:todoId', users.requiresLogin, todos.hasAuthorization, todos.delete);
 
 module.exports = router;
