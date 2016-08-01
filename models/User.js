@@ -11,6 +11,9 @@ var UserSchema = new Schema({
 		unique: true
 	},
 	password: String,
+	provider: String,
+	providerId: String,
+	providerData: {},
 	todos: {}
 });
 

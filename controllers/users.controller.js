@@ -1,5 +1,4 @@
 var User = require('../models/User.js');
-var passport = require('passport');
 
 exports.create = function(req, res, next) {
 	var user = new User(req.body);
