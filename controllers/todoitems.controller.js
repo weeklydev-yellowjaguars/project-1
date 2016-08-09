@@ -12,7 +12,12 @@ var getErrorMessage = function(err) {
 };
 
 exports.create = function(req, res) {
-	var todo = new Todo(req.body);
+	var todo = null;
+
+	// mongoose needs to set the _id field
+	delete req.body._id;
+
+	todo = new Todo(req.body);
 	todo.author_id = req.user.id;
 	todo.save(function(err) {
 		if (err)
