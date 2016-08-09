@@ -8,8 +8,7 @@
     app.NewItemComponent =
     ng.core.Component({
         selector: 'app-new-item',
-        templateUrl: 'app/components/new-item/view.html',
-        providers: [app.TodoItemService]
+        templateUrl: 'app/components/new-item/view.html'
     })
     .Class({
         constructor: [app.TodoItemService, function(todoItemService) {
@@ -26,6 +25,10 @@
                 return false;
             }
 
+            // generate a temporary ID for the front-end
+            this.model._id = 'tmp_' + String(Date.now()) + String(this.todoItemService.todoItems.length);
+
+            // send the item to the service to be added
             this.todoItemService.addTodoItem(this.model);
 
             // reset the form fields and status

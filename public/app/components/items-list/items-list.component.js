@@ -3,18 +3,23 @@
     app.ItemsListComponent =
     ng.core.Component({
         selector: 'app-items-list',
-        templateUrl: 'app/components/items-list/view.html',
-        providers: [app.TodoItemService]
+        templateUrl: 'app/components/items-list/view.html'
     })
     .Class({
+        /**
+        *** Constructor
+        **/
         constructor: [app.TodoItemService, function(todoItemService) {
             var _this = this;
 
             this.todoItemService = todoItemService;
-            this.todoItemService.e_itemAdded.subscribe(function(item) {
-                _this.todoItems.push(item);
+
+            // when items are retrieved by the service, update the list
+            this.todoItemService.e_itemsRetrieved.subscribe(function(items) {
+                _this.todoItems = _this.todoItemService.todoItems;
             });
 
+            // add the initial service items to the list
             this.todoItems = this.todoItemService.todoItems;
         }],
         /**
@@ -45,14 +50,20 @@
         *** Remove the item from the front-end list, then send a remove request to the service.
         **/
         removeItem: function($item, item) {
+            var _this = this;
+
             $($item).addClass('is-hiding');
 
             // make sure the 150ms delay matches up with the CSS transition speed
             window.setTimeout(function() {
                 $($item).hide();
+
+                // ask the service to remove the item
+                _this.todoItemService.removeItem(item, function(err) {
+                    _this.todoItems = _this.todoItemService.todoItems;
+                });
             }, 150);
 
-            this.todoItemService.removeItem(item);
         }
     });
 
