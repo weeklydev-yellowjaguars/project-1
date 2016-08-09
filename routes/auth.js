@@ -9,10 +9,15 @@ router.post('/register', auth.register);
 
 router.get('/login', auth.renderLogin);
 router.post('/login', passport.authenticate('local', {
-	successRedirect: '/',
 	failureRedirect: '/login',
 	failureFlash: true
-}));
+}), function(req, res, next) {
+    req.session.save(function(err) {
+        if (err) return next(err);
+        
+        res.redirect('/');
+    });
+});
 
 router.get('/logout', auth.logout);
 

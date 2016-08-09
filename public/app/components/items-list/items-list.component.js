@@ -8,7 +8,12 @@
     })
     .Class({
         constructor: [app.TodoItemService, function(todoItemService) {
+            var _this = this;
+
             this.todoItemService = todoItemService;
+            this.todoItemService.e_itemAdded.subscribe(function(item) {
+                _this.todoItems.push(item);
+            });
 
             this.todoItems = this.todoItemService.todoItems;
         }],

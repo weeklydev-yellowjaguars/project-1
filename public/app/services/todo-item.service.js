@@ -1,14 +1,19 @@
 (function(app) {
 
+    var e_itemAdded = new ng.core.EventEmitter();
+
     app.TodoItemService =
     ng.core.Injectable().Class({
         constructor: function() {
+            this.e_itemAdded = e_itemAdded;
             this.todoItems = [];
 
             this.getTodoItems();
         },
         addTodoItem: function(item, cb) {
             this.todoItems.push(item);
+
+            this.e_itemAdded.emit(item);
 
             // if logged in, save to the database
         },
@@ -25,6 +30,7 @@
                 {_id: 'i7ffag6r6adsf6g87g6fas876sd86g7f', content: 'consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', priority: 0, date_created: Date.now()},
                 {_id: 'j7ffag6r6adsf6g87g6fas876sd86g7f', content: 'exercitation ullamco laboris nisi ut aliquip', priority: 2, date_created: Date.now()},
             ];
+            data = [];
 
             this.todoItems = data;
 
