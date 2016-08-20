@@ -8,7 +8,20 @@ Project 1 - To Do List
 3. For angular2, run `cd public/vendor` and run `npm install`
 4. From the project base directory, run `npm start` to start the Express server
 
-## Team Members
+## Requirements
+
+The project is run via an express server using MongoDB. Therefore, the following are required:
+
+* node
+* mongodb
+
+To install:
+
+* Run `npm install` from the project directory
+* Run `npm install` from the `public/vendor` directory (this installs angular for the front-end)
+* Start the MongoDB server: [Instructions](https://docs.mongodb.com/manual/tutorial/manage-mongodb-processes/)
+* Run `npm start` to run the node server
+* Visit [http://localhost:3000](http://localhost:3000)
 
 ## Task
 
